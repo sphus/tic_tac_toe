@@ -2,7 +2,7 @@
 
 Grammar_learning/
 Paper_B/
-inc/
+rtl/inc/
 
 rtl/src/*.v
 !board.v

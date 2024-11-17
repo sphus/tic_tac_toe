@@ -45,3 +45,6 @@
 ## 待完成功能
 
 - 计算机落子电路实现
+
+# modelsim仿真tcl脚本代码
+do ./tcl/board.tcl
