@@ -1,13 +1,17 @@
+# .gitignore
 
 Grammar_learning/
 Paper_B/
-rtl/inc/
+inc/
 
 rtl/src/*.v
-!tic_tac_toe.v
+!board.v
 
 sim/tb/*.v
-!tb_tic_tac_toe.v
+!tb_board.v
 
 sim/tcl/*.tcl
-!sim/tcl/tic_tac_toe.tcl
+!sim/tcl/board.tcl
+
+.vscode/
+
