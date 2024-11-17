@@ -1,6 +1,13 @@
-# Ignore the Grammar_learning folder
+
 Grammar_learning/
 Paper_B/
 rtl/inc/
-rtl/src/decoder_4_16.v
-rtl/src/encoder_16_4.v
+
+rtl/src/*.v
+!tic_tac_toe.v
+
+sim/tb/*.v
+!tb_tic_tac_toe.v
+
+sim/tcl/*.tcl
+!sim/tcl/tic_tac_toe.tcl

@@ -816,10 +816,10 @@ Resolution = ns
 UserTimeUnit = default
 
 ; Default run length
-RunLength = 100 ns
+RunLength = 2 us
 
 ; Maximum iterations that can be run without advancing simulation time
-IterationLimit = 20000
+IterationLimit = 5000
 
 ; Specify libraries to be searched for precompiled modules
 ; LibrarySearchPath = <path/lib> [<path/lib> ...]
@@ -885,7 +885,7 @@ IterationLimit = 20000
 ; given severity or higher will cause a running simulation to stop.
 ; This value is ignored during elaboration.
 ; 0 = Note  1 = Warning  2 = Error  3 = Failure  4 = Fatal
-BreakOnAssertion = 3
+BreakOnAssertion = 4
 
 ; Severity level of a tool message which will cause a running simulation to 
 ; stop. This value is ignored during elaboration. Default is to not break.
@@ -1919,6 +1919,7 @@ MvcHome = $MODEL_TECH/..
 ;    (e.g. SVPrettyPrintFlags=I4S,L20,C256,F4,E50,D5)
 ; SVPrettyPrintFlags=I4S
 
+DelayFileOpen = 1
 [lmc]
 ; The simulator's interface to Logic Modeling's SmartModel SWIFT software
 libsm = $MODEL_TECH/libsm.sl
@@ -2029,7 +2030,11 @@ suppress = 8780 ;an explanation can be had by running: verror 8780
 Project_Version = 6
 Project_DefaultLib = work
 Project_SortMethod = unused
-Project_Files_Count = 0
+Project_Files_Count = 2
+Project_File_0 = D:/work_file/FPGA/learning/hubulab_training/tic_tac_toe/sim/tb/tb_tic_tac_toe.v
+Project_File_P_0 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 vlog_noload 0 cover_branch 0 folder {Top Level} last_compile 1731828417 cover_fsm 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 1 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 0 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_1 = D:/work_file/FPGA/learning/hubulab_training/tic_tac_toe/rtl/src/tic_tac_toe.v
+Project_File_P_1 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 vlog_noload 0 cover_branch 0 folder {Top Level} last_compile 1731829194 cover_fsm 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 1 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 1 cover_expr 0 dont_compile 0 cover_stmt 0
 Project_Sim_Count = 0
 Project_Folder_Count = 0
 Echo_Compile_Output = 0

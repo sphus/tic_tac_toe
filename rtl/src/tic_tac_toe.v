@@ -5,8 +5,8 @@ module tic_tac_toe
 
         input   wire            player_move     ,   // player move
         input   wire            computer_move   ,   // computer move
-        input   wire    [3:0]   player_adderss  ,   // player address
-        input   wire    [3:0]   computer_adderss,   // computer address
+        input   wire    [3:0]   player_address  ,   // player address
+        input   wire    [3:0]   computer_address,   // computer address
 
 
         output  wire    [1:0]   led_0           ,   // output led_0
@@ -28,12 +28,13 @@ module tic_tac_toe
     parameter EMPTY     = 2'b00;
     parameter PLAYER    = 2'b01;
     parameter COMPUTER  = 2'b10;
+    parameter TEST      = 2'b11;
 
     // 棋盘数据
     reg     [1:0] board [8:0];
 
     // 是否有子信号
-    wire    [8:0] piece;
+    reg     [8:0] piece;
 
 
     // 棋盘数据输出
@@ -54,15 +55,20 @@ module tic_tac_toe
     //     for (j = 0;j < 3*3;j = j + 1)
     //         assign piece[j] = board[j];
     // endgenerate
-    assign piece[0] = |board[0];
-    assign piece[1] = |board[1];
-    assign piece[2] = |board[2];
-    assign piece[3] = |board[3];
-    assign piece[4] = |board[4];
-    assign piece[5] = |board[5];
-    assign piece[6] = |board[6];
-    assign piece[7] = |board[7];
-    assign piece[8] = |board[8];
+
+    always @( *)
+    begin
+        piece[0] = |board[0];
+        piece[1] = |board[1];
+        piece[2] = |board[2];
+        piece[3] = |board[3];
+        piece[4] = |board[4];
+        piece[5] = |board[5];
+        piece[6] = |board[6];
+        piece[7] = |board[7];
+        piece[8] = |board[8];
+    end
+
 
 
     // integer i = 0;
@@ -71,7 +77,7 @@ module tic_tac_toe
     always @(posedge clk or negedge rstn)
     begin
         // 棋盘初始化，默认EMPTY
-        if (!rstn)
+        if (rstn == 1'b0)
         begin
             // for (i = 0;i < 3*3;i = i + 1)
             //     board[i] = EMPTY;
@@ -84,6 +90,7 @@ module tic_tac_toe
             board[6] <= EMPTY;
             board[7] <= EMPTY;
             board[8] <= EMPTY;
+            illegal_move <= 1'b0;
         end
         else
         begin
@@ -91,14 +98,14 @@ module tic_tac_toe
             if (player_move)
             begin
                 // 棋盘已有子
-                if (piece[player_adderss] == 1'b1)
+                if (piece[player_address] == 1'b1)
                 begin
                     illegal_move <= 1'b1;
                 end
                 else
                 begin
                     // 棋盘数据输入
-                    board[player_adderss] = PLAYER;
+                    board[player_address] = PLAYER;
                     illegal_move <= 1'b0;
                 end
             end
@@ -106,14 +113,14 @@ module tic_tac_toe
             else if (computer_move)
             begin
                 // 棋盘已有子
-                if (piece[computer_adderss] == 1'b1)
+                if (piece[computer_address] == 1'b1)
                 begin
                     illegal_move <= 1'b1;
                 end
                 else
                 begin
                     // 棋盘数据输入
-                    board[computer_adderss] = COMPUTER;
+                    board[computer_address] = COMPUTER;
                     illegal_move <= 1'b0;
                 end
             end
@@ -124,72 +131,50 @@ module tic_tac_toe
         end
     end
 
+
     // 判断胜利与胜者
     always @(posedge clk or negedge rstn)
     begin
-        if (!rstn)
+        if (rstn == 1'b0)
         begin
             win <= 1'b0;
+            winner <= 2'd0;
         end
-        // 第一行
-        else if (board[3*0+0] == board[3*0+1] == board[3*0+2] != EMPTY)
+        else if (&{board[3*0+0][0],board[3*0+1][0],board[3*0+2][0]}||       // 玩家第一行
+                 &{board[3*1+0][0],board[3*1+1][0],board[3*1+2][0]}||       // 玩家第二行
+                 &{board[3*2+0][0],board[3*2+1][0],board[3*2+2][0]}||       // 玩家第三行
+                 &{board[3*0+0][0],board[3*1+0][0],board[3*2+0][0]}||       // 玩家第一列
+                 &{board[3*0+1][0],board[3*1+1][0],board[3*2+1][0]}||       // 玩家第二列
+                 &{board[3*0+2][0],board[3*1+2][0],board[3*2+2][0]}||       // 玩家第三列
+                 &{board[3*0+0][0],board[3*1+1][0],board[3*2+2][0]}||       // 玩家左上到右下
+                 &{board[3*2+0][0],board[3*1+1][0],board[3*0+2][0]})        // 玩家右上到左下
         begin
-            win <= 1'b1;
-            winner <= board[3*0+0];
+            win     <= 1'b1;
+            winner  <= PLAYER;
         end
-        // 第二行
-        else if (board[3*1+0] == board[3*1+1] == board[3*1+2] != EMPTY)
+        else if (&{board[3*0+0][1],board[3*0+1][1],board[3*0+2][1]}||       // 电脑第一行
+                 &{board[3*1+0][1],board[3*1+1][1],board[3*1+2][1]}||       // 电脑第二行
+                 &{board[3*2+0][1],board[3*2+1][1],board[3*2+2][1]}||       // 电脑第三行
+                 &{board[3*0+0][1],board[3*1+0][1],board[3*2+0][1]}||       // 电脑第一列
+                 &{board[3*0+1][1],board[3*1+1][1],board[3*2+1][1]}||       // 电脑第二列
+                 &{board[3*0+2][1],board[3*1+2][1],board[3*2+2][1]}||       // 电脑第三列
+                 &{board[3*0+0][1],board[3*1+1][1],board[3*2+2][1]}||       // 电脑左上到右下
+                 &{board[3*2+0][1],board[3*1+1][1],board[3*0+2][1]})        // 电脑右上到左下
         begin
-            win <= 1'b1;
-            winner <= board[3*1+0];
-        end
-        // 第三行
-        else if (board[3*2+0] == board[3*2+1] == board[3*2+2] != EMPTY)
-        begin
-            win <= 1'b1;
-            winner <= board[3*2+0];
-        end
-        // 第一列
-        else if (board[3*0+0] == board[3*1+0] == board[3*2+0] != EMPTY)
-        begin
-            win <= 1'b1;
-            winner <= board[3*0+0];
-        end
-        // 第二列
-        else if (board[3*0+1] == board[3*1+1] == board[3*2+1] != EMPTY)
-        begin
-            win <= 1'b1;
-            winner <= board[3*0+1];
-        end
-        // 第三列
-        else if (board[3*0+2] == board[3*1+2] == board[3*2+2] != EMPTY)
-        begin
-            win <= 1'b1;
-            winner <= board[3*0+2];
-        end
-        // 左上到右下
-        else if (board[3*0+0] == board[3*1+1] == board[3*2+2] != EMPTY)
-        begin
-            win <= 1'b1;
-            winner <= board[3*0+0];
-        end
-        // 右上到左下
-        else if (board[3*0+2] == board[3*1+1] == board[3*2+0] != EMPTY)
-        begin
-            win <= 1'b1;
-            winner <= board[3*0+2];
+            win     <= 1'b1;
+            winner  <= COMPUTER;
         end
         else
         begin
             win <= 1'b0;
-            winner <= 2'b00;
+            winner <= 2'd0;
         end
     end
 
     // 判断是否平局
     always @(posedge clk or negedge rstn)
     begin
-        if (!rstn)
+        if (rstn == 1'b0)
         begin
             tie <= 1'b0;
         end
@@ -203,6 +188,9 @@ module tic_tac_toe
             tie <= 1'b0;
         end
     end
+
+
+
 
 
 endmodule

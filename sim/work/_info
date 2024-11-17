@@ -8,8 +8,36 @@ z2
 !i10f 100
 cModel Technology
 Z0 dD:/work_file/FPGA/learning/hubulab_training/tic_tac_toe/sim
+T_opt
+!s110 1731832074
+VbBnid`OX8W_mzK_AHHboe1
+04 11 4 work tic_tac_toe fast 0
+=1-d8808341dd39-6739a90a-197-7200
+o-quiet -auto_acc_if_foreign -work work -debugdb
+n@_opt
+OL;O;10.4;61
+R0
+vboard_test
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+31
+!i10b 1
+!s100 RA1FEzA1M7=bN?`@maT6]0
+IOdFf<7b=8oVS0QZ?B0=JS0
+R0
+w1731833579
+8../rtl/src/board_test.v
+F../rtl/src/board_test.v
+L0 1
+Z2 OL;L;10.4;61
+!s108 1731833582.737000
+!s107 ../rtl/src/board_test.v|
+!s90 -reportprogress|300|../rtl/src/board_test.v|
+!i113 0
+Z3 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 vtb_array
-VDg1SIo80bB@j0V0VzS_@n1
+R1
 r1
 !s85 0
 31
@@ -21,9 +49,66 @@ w1731763984
 8./tb/tb_array.v
 F./tb/tb_array.v
 L0 3
-OL;L;10.4;61
+R2
 !s108 1731765790.669000
 !s107 .\tb\..\..\rtl\inc\array.v|./tb/tb_array.v|
 !s90 -reportprogress|300|./tb/tb_array.v|
 !i113 0
-o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R3
+vtb_board_test
+R1
+r1
+!s85 0
+31
+!i10b 1
+!s100 Ld9no:09Ylg`5[6]K]<Bf1
+I3YaE163J:i7KKS2_Cz7g=3
+R0
+w1731833261
+8./tb/tb_board_test.v
+F./tb/tb_board_test.v
+L0 5
+R2
+!s108 1731833582.644000
+!s107 ./tb/tb_board_test.v|
+!s90 -reportprogress|300|./tb/tb_board_test.v|
+!i113 0
+R3
+vtb_tic_tac_toe
+R1
+r1
+!s85 0
+31
+!i10b 1
+!s100 1oFiVP:M3_0U;ZzJgS^2M1
+IA?f2^=EjjkG:[3SlT9>cD2
+R0
+w1731836140
+8./tb/tb_tic_tac_toe.v
+F./tb/tb_tic_tac_toe.v
+L0 4
+R2
+!s108 1731836144.978000
+!s107 ./tb/tb_tic_tac_toe.v|
+!s90 -reportprogress|300|./tb/tb_tic_tac_toe.v|
+!i113 0
+R3
+vtic_tac_toe
+R1
+r1
+!s85 0
+31
+!i10b 1
+!s100 1b20I1NINl9?O488^aE8L2
+I6M<Y=W5bB<fJTEYG;H;9O1
+R0
+w1731835455
+8../rtl/src/tic_tac_toe.v
+F../rtl/src/tic_tac_toe.v
+L0 1
+R2
+!s108 1731836145.064000
+!s107 ../rtl/src/tic_tac_toe.v|
+!s90 -reportprogress|300|../rtl/src/tic_tac_toe.v|
+!i113 0
+R3
