@@ -25,14 +25,16 @@ module tic_tac_toe
         output  wire        illegal_move            //output illegal_move
     );
 
+
+    
     // 棋盘信息
     parameter EMPTY     = 2'b00;
     parameter PLAYER    = 2'b01;
     parameter COMPUTER  = 2'b10;
 
     // 状态机信息
-    parameter IDLE      = 4'b0000;
-    parameter PLAYER    = 4'b0001;
+    parameter IDLE      = 4'b0001;
+    parameter PLAYER    = 4'b0010;
     parameter COMPUTER  = 4'b0100;
     parameter DONE      = 4'b1000;
 

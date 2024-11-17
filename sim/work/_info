@@ -1,0 +1,29 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/work_file/FPGA/learning/hubulab_training/tic_tac_toe/sim
+vtb_array
+VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+31
+!i10b 1
+!s100 CKn31:j^cH2zPAWfoG4MQ2
+IRKYPi?OOD`a4UbjMCi5Oi0
+R0
+w1731763984
+8./tb/tb_array.v
+F./tb/tb_array.v
+L0 3
+OL;L;10.4;61
+!s108 1731765790.669000
+!s107 .\tb\..\..\rtl\inc\array.v|./tb/tb_array.v|
+!s90 -reportprogress|300|./tb/tb_array.v|
+!i113 0
+o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
