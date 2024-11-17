@@ -1,3 +1,6 @@
 # Ignore the Grammar_learning folder
 Grammar_learning/
 Paper_B/
+rtl/inc/
+rtl/src/decoder_4_16.v
+rtl/src/encoder_16_4.v
